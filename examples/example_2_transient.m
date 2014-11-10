@@ -1,4 +1,5 @@
-FNM TSD Example
+% FNM TSD Example
+
 width = 1e-3;
 height = 5e-3;
 elements_x = 32;
@@ -7,8 +8,9 @@ kerf = 4e-4;
 transducer_array = create_rect_planar_array(elements_x, elements_y, width, height, ...
 		kerf, kerf);
 draw_array(transducer_array);
-This sets up our transducer array with 20 1 mm x 3 mm elements spaced
-0.5mm edge-to-edge.
+
+% This sets up our transducer array with 20 1 mm x 3 mm elements spaced
+% 0.5mm edge-to-edge.
 define_media();
 fs = 5e6;
 f0 = 1e6;
@@ -31,23 +33,28 @@ delta = [(xmax-xmin)/xpoints (ymax-ymin)/ypoints (zmax-zmin)/zpoints];
 coord_grid=set_coordinate_grid(delta, xmin, xmax, ymin, ymax, zmin, zmax);
 [tmin, tmax] = impulse_begin_and_end_times(transducer_array, coord_grid, lossless); t = tmin:deltat:tmax;
 time_struct = set_time_samples(deltat, tmin, tmax);
-This sets up our coordinate grid to cover the width of the transducer
-array on the x axis and from 0 to 15 wavelengths on the z axis. This code
-also sets up a time sampling structure that tells fnm_tsd to sample from
-t=0 to t=2 periods at intervals of the period of the sampling frequency
-(5MHz). Now for the excitation function.
+
+% This sets up our coordinate grid to cover the width of the transducer
+% array on the x axis and from 0 to 15 wavelengths on the z axis. This code
+% also sets up a time sampling structure that tells fnm_tsd to sample from
+% t=0 to t=2 periods at intervals of the period of the sampling frequency
+% (5MHz). Now for the excitation function.
 
 input_func = set_excitation_function(2, f0, ncycles/f0, 0);
-This sets our excitation function to be a Hanning weighted tone burst
-with an amplitude of 1 and center frequency of f0 (1MHz). See the
-documentation for set_excitation_function for details on how FOCUS
-handles excitation functions. The next step is to focus the array.
+
+% This sets our excitation function to be a Hanning weighted tone burst
+% with an amplitude of 1 and center frequency of f0 (1MHz). See the
+% documentation for set_excitation_function for details on how FOCUS
+% handles excitation functions. The next step is to focus the array.
+
 disp(['Focusing array at (', num2str(focus_x), ', ', num2str(focus_y), ...
 ', ', num2str(focus_z), ')']);
 transducer_array = set_time_delays(transducer_array, focus_x, ...
 focus_y, focus_z, lossless, fs);
-Now we run the FNM TSD function and display the output.
-ndiv=4;
+
+% Now we run the FNM TSD function and display the output.
+% ndiv=4;
+
 tic();
 disp('Calculating pressure field...');
 p_tsd=transient_pressure(transducer_array, coord_grid, lossless, time_struct, ndiv, input_func);
