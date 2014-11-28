@@ -32,7 +32,7 @@ function titrate_frequency()
     figure();
     shg();
     subplot_dims = [3 3];
-    freq_inc = 5e6;
+    freq_inc = 5e4;
     for i=1:9
         freq = f0 + (i - 1) * freq_inc;
 
