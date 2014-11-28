@@ -1,12 +1,15 @@
 % Script to run through different frequencies to observe effect.
 
 function titrate_frequency()
+    % Structured as a function so that we can write helper functions in the
+    % same file.
+
     % Setup the transducer array.
-    width = 1e-3;
-    height = 5e-3;
-    elements_x = 4;
+    width = 5e-5;
+    height = 5e-5;
+    elements_x = 200;
     elements_y = 1;
-    kerf = 1e-3;
+    kerf = 5e-5;
     r_curv = 6e-2;
     transducer_array = create_rect_csa(...
             elements_x, elements_y, width, height, kerf, kerf, r_curv);
@@ -18,7 +21,7 @@ function titrate_frequency()
     define_media();
 
     % Set stimulation frequency.
-    f0 = 4e6;
+    f0 = 1e4;
 
     % Set the focus target.
     focus_x = 0;
@@ -27,10 +30,11 @@ function titrate_frequency()
 
     % Dimensions of subplots, i.e. how many plots to show.
     figure();
+    shg();
     subplot_dims = [3 3];
-    freq = f0;
+    freq_inc = 5e6;
     for i=1:9
-        freq = f0 + (i - 1) * 5e6;
+        freq = f0 + (i - 1) * freq_inc;
 
         % Caculate single-focus phase.
         transducer_array = find_single_focus_phase(...
@@ -49,21 +53,23 @@ end
 
 
 function calc_pw_and_plot(transducer_array, subplot_dims, subplot_idx, freq)
+    % Helper function to compute pressure wave and plot on sublot.
+
     define_media();
 
     % Set up the viewport and resolution.
-    xmin = -6e-2;
-    xmax = 6e-2;
+    xmin = -2e-2;
+    xmax = 2e-2;
 
     ymin = 0;
     ymax = 0;
 
     zmin = -1e-2;
-    zmax = 6e-2;
+    zmax = 3e-2;
 
-    xpoints = 400;
+    xpoints = 1000;
     ypoints = 1;
-    zpoints = 300;
+    zpoints = 1000;
 
     dx = (xmax-xmin)/xpoints;
     dy = (ymax-ymin)/ypoints;
