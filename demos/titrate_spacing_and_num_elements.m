@@ -61,9 +61,10 @@ function titrate_spacing_and_num_elements()
                     spacing, spacing, spacing, spacing, r_curv);
 
             % Uncomment to draw array diagrams only.
-            subplot(subplot_dims(1), subplot_dims(2), subplot_idx);
-            draw_array(transducer_array);
-            continue;
+            % subplot(subplot_dims(1), subplot_dims(2), subplot_idx);
+            % draw_array(transducer_array);
+            % title(sprintf('spacing: %g, elements: %g', spacing, num_elements));
+            % continue;
 
             % Caculate single-focus phase.
             transducer_array = find_single_focus_phase(...
@@ -72,6 +73,9 @@ function titrate_spacing_and_num_elements()
             % Compuate pressure wave and plot result.
             calc_pw_and_plot(transducer_array, subplot_dims, subplot_idx, ...
                     spacing, num_elements);
+
+            % Give the processor a rest.
+            pause(30);
         end
     end
 
@@ -97,9 +101,9 @@ function calc_pw_and_plot(transducer_array, subplot_dims, subplot_idx, ...
     zmin = -1e-2;
     zmax = 3e-2;
 
-    xpoints = 300;
+    xpoints = 1000;
     ypoints = 1;
-    zpoints = 300;
+    zpoints = 1000;
 
     dx = (xmax-xmin)/xpoints;
     dy = (ymax-ymin)/ypoints;
@@ -123,7 +127,7 @@ function calc_pw_and_plot(transducer_array, subplot_dims, subplot_idx, ...
     subplot(subplot_dims(1), subplot_dims(2), subplot_idx);
     h = pcolor(x*100,z*100,rot90(squeeze(abs(p_cw)),3));
     set(h,'edgecolor','none');
-    title(sprintf('spacing: %g, num_elements: %g', spacing, num_elements));
+    title(sprintf('spacing: %g, elements: %g', spacing, num_elements));
     xlabel('x (cm)');
     ylabel('z (cm)');
 end
