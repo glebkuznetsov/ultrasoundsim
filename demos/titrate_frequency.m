@@ -20,21 +20,29 @@ function titrate_frequency()
     % Set up the media. By default we'll use water.
     define_media();
 
-    % Set stimulation frequency.
-    f0 = 1e4;
-
     % Set the focus target.
     focus_x = 0;
     focus_y = 0;
     focus_z = 1e-2; % 2e-2; % 1cm
 
+    % Titrate over these frequencies.
+    freq_list = [
+        1e4
+        5e4
+        1e5
+        5e5
+        1e6
+        4e6
+        5e6
+        1e7
+        5e7
+    ];
+
     % Dimensions of subplots, i.e. how many plots to show.
     figure();
-    shg();
     subplot_dims = [3 3];
-    freq_inc = 5e4;
-    for i=1:9
-        freq = f0 + (i - 1) * freq_inc;
+    for i = 1:length(freq_list)
+        freq = freq_list(i);
 
         % Caculate single-focus phase.
         transducer_array = find_single_focus_phase(...
