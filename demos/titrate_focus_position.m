@@ -1,15 +1,15 @@
 % Script to run through different frequencies to observe effect.
 
-function titrate_frequency()
+function titrate_focus_position()
     % Structured as a function so that we can write helper functions in the
     % same file.
 
     % Setup the transducer array.
-    width = 5e-3;
-    height = 5e-3;
-    elements_x = 16;
+    width = 5e-4;
+    height = 5e-4;
+    elements_x = 100;
     elements_y = 1;
-    kerf = 5e-3;
+    kerf = 5e-4;
     r_curv = 6e-2;
     transducer_array = create_rect_csa(...
             elements_x, elements_y, width, height, kerf, kerf, r_curv);
@@ -28,7 +28,7 @@ function titrate_frequency()
     freq = 1e6;
 
     focus_z_list = [
-        5e-1
+        5e-5
         1e-2
         2e-2
         3e-2
