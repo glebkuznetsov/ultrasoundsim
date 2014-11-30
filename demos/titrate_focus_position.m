@@ -9,7 +9,7 @@ function titrate_focus_position()
     height = 5e-4;
     elements_x = 100;
     elements_y = 1;
-    kerf = 5e-4;
+    kerf = 1e-3;
     r_curv = 6e-2;
     transducer_array = create_rect_csa(...
             elements_x, elements_y, width, height, kerf, kerf, r_curv);
@@ -67,8 +67,8 @@ function calc_pw_and_plot(transducer_array, subplot_dims, subplot_idx, focus)
     define_media();
 
     % Set up the viewport and resolution.
-    xmin = -2e-2;
-    xmax = 2e-2;
+    xmin = -6e-2;
+    xmax = 6e-2;
 
     ymin = 0;
     ymax = 0;
