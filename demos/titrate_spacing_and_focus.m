@@ -23,7 +23,7 @@ function titrate_spacing_and_focus()
     focus_y = 0;
     focus_z = 1e-2; % 2e-2; % 1cm
 
-    element_width = 1e-5;
+    element_width = 5e-4;
 
     % Try all combinations of spacing and focus.
     spacing_list = [
