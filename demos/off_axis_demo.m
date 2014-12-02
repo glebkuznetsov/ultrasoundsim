@@ -21,9 +21,9 @@ function [pw] = simulate_off_axis()
     define_media();
 
     %%% Spot 1
-    focus_x = 0.8e-2;
+    focus_x = 1.75e-2;
     focus_y = 0;
-    focus_z = 1e-2;
+    focus_z = 0.75e-2;
     freq = 4e6;
     target_1_array = find_single_focus_phase(...
             transducer_array, focus_x, focus_y, focus_z, water, freq, 200);
@@ -62,14 +62,14 @@ function [x, y, z, coord_grid] = get_x_y_z_coord_grid()
     define_media();
 
     % Set up the viewport and resolution.
-    xmin = -6e-2;
-    xmax = 6e-2;
+    xmin = -4e-2;
+    xmax = 4e-2;
 
     ymin = 0;
     ymax = 0;
 
-    zmin = -1e-2;
-    zmax = 3e-2;
+    zmin = -0.5e-2;
+    zmax = 2.5e-2;
 
     xpoints = 300;
     ypoints = 1;
