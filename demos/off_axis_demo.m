@@ -71,9 +71,9 @@ function [x, y, z, coord_grid] = get_x_y_z_coord_grid()
     zmin = -0.5e-2;
     zmax = 2.5e-2;
 
-    xpoints = 300;
+    xpoints = 500;
     ypoints = 1;
-    zpoints = 300;
+    zpoints = 500;
 
     dx = (xmax-xmin)/xpoints;
     dy = (ymax-ymin)/ypoints;
